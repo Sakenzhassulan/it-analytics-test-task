@@ -7,7 +7,9 @@ func (h *Handler) GenerateResults(ctx *gin.Context) {
 
 	teams, err := h.Service.GenerateResults(ctx, division)
 	if err != nil {
-		ctx.JSON(400, err.Error())
+		ctx.JSON(400, gin.H{
+			"err": err.Error(),
+		})
 		return
 	}
 
@@ -17,7 +19,9 @@ func (h *Handler) GenerateResults(ctx *gin.Context) {
 func (h *Handler) GeneratePlayOffResults(ctx *gin.Context) {
 	results, err := h.Service.GeneratePlayOffResults(ctx)
 	if err != nil {
-		ctx.JSON(400, err.Error())
+		ctx.JSON(400, gin.H{
+			"err": err.Error(),
+		})
 		return
 	}
 
